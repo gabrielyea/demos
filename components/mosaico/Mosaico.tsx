@@ -33,15 +33,6 @@ export default function Mosaico({ images }): JSX.Element {
     target: ref,
     offset: ["end end", "start start"],
   });
-  const test = useSpring(
-    useTransform(scrollYProgress, [0, 0.2, 1], [0, 0.8, 1])
-  );
-  const test2 = useSpring(
-    useTransform(scrollYProgress, [0, 0.3, 1], [-45, 0, 0])
-  );
-  const test3 = useSpring(
-    useTransform(scrollYProgress, [0, 0.5, 1], [-100, 0, 0])
-  );
 
   return (
     <motion.div

@@ -1,4 +1,10 @@
-import { motion, MotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  MotionValue,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 interface MosaicAnimationProps {
   scrollYProgess: MotionValue;

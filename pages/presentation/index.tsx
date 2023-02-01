@@ -5,6 +5,29 @@ import Slime from "@/components/Slime";
 import { motion, useInView } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
+const parentAnim = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 1,
+      delayChildren: 1,
+    },
+  },
+};
+
+const childAnimations = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
+
+const randomPos = (max: number) => {
+  return Math.floor(Math.random() * max) + 1;
+};
+
 export default function index() {
   const [index, setIndex] = useState(0);
   const ref = useRef(null);
@@ -23,16 +46,34 @@ export default function index() {
         <section className="sticky top-[-1px] h-[1000px]">
           <ScrollSection />
         </section>
-        <div className="h-[4000px]" />
+        <div className="h-[3000px]" />
       </div>
       <div>
         <section className="sticky "></section>
-        <div className="h-[2000px]">
-          <div className="relative top-[30%] left-[20%] w-fit">
-            <Trigger index={1} setIndex={setIndex} />
-            <img src="explotion.gif" width={256} height={256} />
-          </div>
-        </div>
+        <Trigger index={1} setIndex={setIndex} />
+        <motion.div
+          variants={parentAnim}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="h-[2000px]"
+        >
+          {[1, 2, 3, 4, 5].map((i) => {
+            return (
+              <motion.div
+                key={i}
+                variants={childAnimations}
+                style={{
+                  left: `${randomPos(70)}%`,
+                  transform: `scale(${randomPos(2)})`,
+                }}
+                className="relative top-[20%] w-fit"
+              >
+                <img src="explotion.gif" width={256} height={256} />
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
       <div className="flex justify-center">
         <section className="sticky pt-10">

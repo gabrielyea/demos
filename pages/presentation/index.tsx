@@ -34,14 +34,22 @@ export default function index() {
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    console.log(isInView);
-    if (isInView) {
-      setIndex(1);
-    }
-  }, [isInView]);
+    setTimeout(() => {
+      setIndex(0);
+    }, 1000);
+  }, []);
+
   return (
     <div className="bg-[#09010d]">
-      <Slime message={index} />
+      {index !== -1 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <Slime message={index} />
+        </motion.div>
+      ) : null}
       <div>
         <section className="sticky top-[-1px] h-[1000px]">
           <ScrollSection />
@@ -49,7 +57,6 @@ export default function index() {
         <div className="h-[3000px]" />
       </div>
       <div>
-        <section className="sticky "></section>
         <Trigger index={1} setIndex={setIndex} />
         <motion.div
           variants={parentAnim}

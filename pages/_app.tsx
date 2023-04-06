@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>Gabriel's stuff</title>
         <meta name="description" content="Small animation demos" key="desc" />
       </Head>
-      <Component {...pageProps} />)
+      <Component {...pageProps} />
     </div>
   );
 }
